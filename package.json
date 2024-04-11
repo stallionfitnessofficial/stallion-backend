@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Dynamic web app for managin gym membership using MERN",
   "main": "index.js",
+  "engines": {
+    "node": "16.13.0"
+  },
   "scripts": {
     "start": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
