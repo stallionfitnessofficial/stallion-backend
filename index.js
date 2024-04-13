@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 var cors = require("cors");
 mongoose
   .connect(
-    "mongodb+srv://Vansh:Vansh@freelancing.ioxxoqc.mongodb.net/?retryWrites=true&w=majority&appName=FreeLancing"
+    "mongodb+srv://stallionfitness:stallionfitness@stallion-fitness.pjgrsef.mongodb.net/?retryWrites=true&w=majority&appName=Stallion-fitness"
   )
   .then(() => console.log("Connected!"))
   .catch(() => {
