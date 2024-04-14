@@ -23,15 +23,15 @@ app.use(cors());
 
 app.post("/user/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { name , email, password } = req.body;
+    if (!name || !email || !password) {
       return res
         .status(400)
         .json({ message: "Email and password are required" });
     }
 
     // Create a new user
-    const user = new User({ email, password });
+    const user = new User({ name, email, password });
     const newUser = await user.save();
 
     // Send a success message with minimal data
