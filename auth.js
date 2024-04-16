@@ -19,13 +19,13 @@ const verifyJWT = (req, res, next) => {
   }
 };
 
-const generateJWT = (payload, expiresIn = null) => {
+const generateJWT = (payload) => {
   const options = {
-    expiresIn,
+    // expiresIn,
   };
-  if (expiresIn !== null) {
-    options.expiresIn = expiresIn;
-  }
+  // if (expiresIn !== null) {
+  //   options.expiresIn = expiresIn;
+  // }
   const secretKey = "secret123"; // Assuming you have loaded the secret key from an environment variable
   return jwt.sign(payload, secretKey, options);
 };

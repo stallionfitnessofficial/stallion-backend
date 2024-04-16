@@ -66,12 +66,12 @@ app.post("/user/login", async (req, res) => {
       $or: [{ email: email }, { name: email }]
     });
     if (!user) {
-        return res.status(401).json({ message: "Invalid email or password" });
+        return res.status(401).json({ message: "Invalid username" });
     }
 
     const validPassword = await bcrypt.compare(password, user.password); // Compare hashed passwords
     if (!validPassword) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.status(401).json({ message: "Invalid password" });
     }
 
     // Create JWT payload
