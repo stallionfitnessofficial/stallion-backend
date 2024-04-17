@@ -95,7 +95,17 @@ app.get("/", (req, res) => {
 // Extract all the Members from the gym
 app.get("/members", async (req, res) => {
   const members = await Member.find({});
-  members.sort((a, b) => a.months - b.months);
+  members.sort((a, b) => {
+    // First, sort by months left (ascending)
+    if (a.months === 0 && b.months !== 0) {
+      return -1; // a (0 months left) comes before b
+    } else if (a.months !== 0 && b.months === 0) {
+      return 1; // b (0 months left) comes before a
+    } else {
+      // If both have 0 or non-zero months left, sort by joining date
+      return a.joiningDate - b.joiningDate;
+    }
+  });
   res.json(members);
 });
 
