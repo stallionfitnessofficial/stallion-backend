@@ -176,6 +176,7 @@ app.post("/members", verifyJWT, async (req, res) => {
 
 // Define your cron job to run every 24 hours
 cron.schedule("0 0 * * *", async () => {
+  return 0;
   // Fetch member details from the API
   const currentTime = new Date();
   const response = await axios.get("http://localhost:3001/members");
