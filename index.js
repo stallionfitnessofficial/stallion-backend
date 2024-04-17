@@ -176,47 +176,48 @@ app.post("/members", verifyJWT, async (req, res) => {
 
 // Define your cron job to run every 24 hours
 cron.schedule("0 0 * * *", async () => {
-  return 0;
+  // return 0;
   // Fetch member details from the API
-  const currentTime = new Date();
-  const response = await axios.get("http://localhost:3001/members");
-  const mem = response;
-  console.log(`In crone job at ${currentTime} and data is ${mem}`);
-  //       // Iterate through each member
-  for (const memberData of mem.data) {
-    const { _id, name, num, iniDate, months } = memberData;
-    let inDate = new Date(iniDate);
-    console.log("In " + name);
+  console.log("In crone job");
+  // const currentTime = new Date();
+  // const response = await axios.get("http://localhost:3001/members");
+  // const mem = response;
+  // console.log(`In crone job at ${currentTime} and data is ${mem}`);
+  // //       // Iterate through each member
+  // for (const memberData of mem.data) {
+  //   const { _id, name, num, iniDate, months } = memberData;
+  //   let inDate = new Date(iniDate);
+  //   console.log("In " + name);
 
-    // Check if today's day is the same as the joining date's day
-    const today = new Date();
-    if (today.getDate() === inDate.getDate()) {
+  //   // Check if today's day is the same as the joining date's day
+  //   const today = new Date();
+  //   if (today.getDate() === inDate.getDate()) {
 
-      let updatedMonths = months - 1;
-      if (updatedMonths < 0) updatedMonths = 0;
+  //     let updatedMonths = months - 1;
+  //     if (updatedMonths < 0) updatedMonths = 0;
 
-      if (updatedMonths == 0) {
-        console.log(name + " renew membership " + updatedMonths);
-        client.messages
-          .create({
-            body: `Dear ${name}, Your membership has expired. Please renew your membership to continue your journey at stallion-fitness.`,
-            from: "+13344716171",
-            to: `+91${num}`,
-          })
-          .then((message) => console.log(message.sid))
-      }
+  //     if (updatedMonths == 0) {
+  //       console.log(name + " renew membership " + updatedMonths);
+  //       client.messages
+  //         .create({
+  //           body: `Dear ${name}, Your membership has expired. Please renew your membership to continue your journey at stallion-fitness.`,
+  //           from: "+13344716171",
+  //           to: `+91${num}`,
+  //         })
+  //         .then((message) => console.log(message.sid))
+  //     }
 
-      //   Update the member's monthsLeft in the database
-      try {
-        console.log("Sending " + updatedMonths);
-        await Member.findOneAndUpdate({ _id }, { months: updatedMonths });
-      } catch (e) {
-        console.log("Error in updating", e);
-      }
+  //     //   Update the member's monthsLeft in the database
+  //     try {
+  //       console.log("Sending " + updatedMonths);
+  //       await Member.findOneAndUpdate({ _id }, { months: updatedMonths });
+  //     } catch (e) {
+  //       console.log("Error in updating", e);
+  //     }
 
       
-    }
-  }
+  //   }
+  // }
 });
 
 app.listen("3001", console.log("Server has started"));
