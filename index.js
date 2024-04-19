@@ -159,7 +159,6 @@ app.post("/members", verifyJWT, async (req, res) => {
   try {
     const member = new Member({
       name: req.body.name,
-      email: req.body.email,
       num: req.body.num,
       iniDate: req.body.iniDate,
       months: req.body.months,
